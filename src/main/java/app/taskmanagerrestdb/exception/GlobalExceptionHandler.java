@@ -1,4 +1,4 @@
-package exception;
+package app.taskmanagerrestdb.exception;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;

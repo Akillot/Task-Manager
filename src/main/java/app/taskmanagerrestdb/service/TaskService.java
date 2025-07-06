@@ -1,11 +1,11 @@
-package service;
+package app.taskmanagerrestdb.service;
 
-import dto.TaskRequest;
-import dto.TaskResponse;
-import entity.Task;
+import app.taskmanagerrestdb.dto.TaskRequest;
+import app.taskmanagerrestdb.dto.TaskResponse;
+import app.taskmanagerrestdb.entity.Task;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-import repository.TaskRepo;
+import app.taskmanagerrestdb.repository.TaskRepo;
 
 import java.util.List;
 import java.util.NoSuchElementException;

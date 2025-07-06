@@ -1,10 +1,10 @@
-package controller;
+package app.taskmanagerrestdb.controller;
 
-import dto.TaskRequest;
-import dto.TaskResponse;
+import app.taskmanagerrestdb.dto.TaskRequest;
+import app.taskmanagerrestdb.dto.TaskResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import service.TaskService;
+import app.taskmanagerrestdb.service.TaskService;
 
 import java.util.List;
 

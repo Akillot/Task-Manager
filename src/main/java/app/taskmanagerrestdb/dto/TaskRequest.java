@@ -1,4 +1,4 @@
-package dto;
+package app.taskmanagerrestdb.dto;
 
 import lombok.Getter;
 import lombok.Setter;

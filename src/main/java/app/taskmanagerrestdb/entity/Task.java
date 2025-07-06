@@ -1,4 +1,4 @@
-package entity;
+package app.taskmanagerrestdb.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
