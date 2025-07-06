@@ -62,7 +62,7 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
 
-    public TaskResponse updateTask(Long id, @NotNull TaskRequest request){
+    public TaskResponse updateTask(Long id, TaskRequest request){
         Task task = taskRepo.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("No task with id " + id));
 
@@ -74,7 +74,7 @@ public class TaskService {
         return mapToResponse(updatedTask);
     }
 
-    private @NotNull TaskResponse mapToResponse(@NotNull Task task){
+    private TaskResponse mapToResponse(Task task){
         TaskResponse response = new TaskResponse();
         response.setId(task.getId());
         response.setTitle(task.getTitle());
