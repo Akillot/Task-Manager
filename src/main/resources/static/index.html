@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <script>
+        async function loadTasks() {
+            const res = await fetch('/tasks');
+            const tasks = await res.json();
+            document.getElementById('output').innerText = JSON.stringify(tasks, null, 2);
+        }
+
+        async function createTask() {
+            const body = {
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                isCompleted: document.getElementById('isCompleted').checked
+            };
+
+            await fetch('/tasks', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(body)
+            });
+
+            loadTasks();
+        }
+    </script>
+</head>
+<body>
+<h1>Task Manager</h1>
+
+<label>Title:
+    <input type="text" id="title">
+</label>
+<br>
+<label>Description:
+    <input type="text" id="description">
+</label>
+<br>
+<label>
+    Completed:
+    <input type="checkbox" id="isCompleted">
+</label>
+<br>
+<button onclick="createTask()">Create Task</button>
+<button onclick="loadTasks()">Load Tasks</button>
+
+<pre id="output"></pre>
+</body>
+</html>
