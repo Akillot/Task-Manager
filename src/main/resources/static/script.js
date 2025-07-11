@@ -1,10 +1,12 @@
-async function loadTasks() {
-    const res = await fetch('/tasks');
-    const tasks = await res.json();
-    document.getElementById('output').innerText = JSON.stringify(tasks, null, 2);
+function openModal() {
+    document.getElementById("modal").style.display = "block";
 }
 
-async function createTask() {
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+async function submitTask() {
     const body = {
         title: document.getElementById('title').value,
         description: document.getElementById('description').value,
@@ -17,25 +19,31 @@ async function createTask() {
         body: JSON.stringify(body)
     });
 
+    closeModal();
     loadTasks();
+}
+
+async function loadTasks() {
+    const res = await fetch('/tasks');
+    const tasks = await res.json();
+    showOutput(tasks);
 }
 
 async function sortTrueFirst(){
     const res = await fetch('/tasks/sort-true-first');
     const tasks = await res.json();
-    document.getElementById('output').innerText = JSON.stringify(tasks, null, 2);
+    showOutput(tasks);
 }
 
 async function sortFalseFirst(){
     const res = await fetch('/tasks/sort-false-first');
     const tasks = await res.json();
-    document.getElementById('output').innerText = JSON.stringify(tasks, null, 2);
+    showOutput(tasks);
 }
 
 async function deleteTask() {
     const id = prompt("Enter ID:");
     if (id === null || id.trim() === "") {
-        alert("ID not found");
         return;
     }
 
@@ -45,9 +53,16 @@ async function deleteTask() {
 
     if (response.status === 204) {
         alert("Task has been deleted");
-    } else {
-        alert("Error");
     }
-
     loadTasks();
+}
+
+function showOutput(tasks) {
+    const output = document.getElementById('output');
+    if (tasks.length > 0) {
+        output.style.display = 'block';
+        output.innerText = JSON.stringify(tasks, null, 2);
+    } else {
+        output.style.display = 'none';
+    }
 }

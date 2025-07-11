@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8" />
     <title>Task Manager</title>
-    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css" />
     <script src="/script.js" defer></script>
 </head>
 <body>
-<h1>Task Manager</h1>
+<h1><span class="highlight">Task</span> Manager</h1>
 
-<div class="form">
-    <label>Title:
-        <input type="text" id="title" />
-    </label>
-    <label>Description:
-        <input type="text" id="description" />
-    </label>
-    <label>
-        Completed:
-        <input type="checkbox" id="isCompleted" />
-    </label>
+<nav class="navbar">
+    <a href="#" onclick="openModal()">Create Task</a>
+    <a href="#" onclick="loadTasks()">Load Tasks</a>
+    <a href="#" onclick="sortTrueFirst()">Sort by finished</a>
+    <a href="#" onclick="sortFalseFirst()">Sort by unfinished</a>
+    <a href="#" onclick="deleteTask()">Delete</a>
+</nav>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Create Task</h2>
+        <label>Title
+            <input type="text" id="title" />
+        </label>
+        <label>Description
+            <input type="text" id="description" />
+        </label>
+        <label>
+            Completed
+            <input type="checkbox" id="isCompleted" />
+        </label>
+        <button onclick="submitTask()">Save</button>
+    </div>
 </div>
 
-<div class="buttons">
-    <button onclick="createTask()">Create Task</button>
-    <button onclick="loadTasks()">Load Tasks</button>
-    <button onclick="sortTrueFirst()">Sort by finished</button>
-    <button onclick="sortFalseFirst()">Sort by unfinished</button>
-    <button onclick="deleteTask()">Delete</button>
-</div>
-
-<pre id="output"></pre>
+<pre id="output" style="display: none;"></pre>
 </body>
 </html>
