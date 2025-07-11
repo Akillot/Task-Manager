@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <script src="script.js"></script>
+    <meta charset="UTF-8" />
     <title>Task Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/script.js" defer></script>
 </head>
 <body>
 <h1>Task Manager</h1>
 
-<label>Title:
-    <input type="text" id="title">
-</label>
-<br>
-<label>Description:
-    <input type="text" id="description">
-</label>
-<br>
-<label>
-    Completed:
-    <input type="checkbox" id="isCompleted">
-</label>
-<br>
-<button onclick="createTask()">Create Task</button>
-<button onclick="loadTasks()">Load Tasks</button>
+<div class="form">
+    <label>Title:
+        <input type="text" id="title" />
+    </label>
+    <label>Description:
+        <input type="text" id="description" />
+    </label>
+    <label>
+        Completed:
+        <input type="checkbox" id="isCompleted" />
+    </label>
+</div>
+
+<div class="buttons">
+    <button onclick="createTask()">Create Task</button>
+    <button onclick="loadTasks()">Load Tasks</button>
+    <button onclick="sortTrueFirst()">Sort by finished</button>
+    <button onclick="sortFalseFirst()">Sort by unfinished</button>
+    <button onclick="deleteTask()">Delete</button>
+</div>
 
 <pre id="output"></pre>
 </body>
