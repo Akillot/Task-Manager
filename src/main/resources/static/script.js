@@ -1,16 +1,27 @@
-function openModal() {
-    document.getElementById("modal").style.display = "block";
+function openDeleteModal() {
+    document.getElementById("deleteModal").style.display = "block";
 }
 
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
+function closeDeleteModal() {
+    document.getElementById("deleteModal").style.display = "none";
 }
 
-async function submitTask() {
+async function createTask() {
+    const title = prompt("Enter task title:");
+    if (!title) return;
+
+    const description = prompt("Enter task description:");
+    if (description === null) return;
+
+    const isCompletedStr = prompt("Is completed? (true/false):");
+    if (isCompletedStr === null) return;
+
+    const isCompleted = isCompletedStr.toLowerCase() === "true";
+
     const body = {
-        title: document.getElementById('title').value,
-        description: document.getElementById('description').value,
-        isCompleted: document.getElementById('isCompleted').checked
+        title: title,
+        description: description,
+        isCompleted: isCompleted
     };
 
     await fetch('/tasks', {
@@ -19,7 +30,28 @@ async function submitTask() {
         body: JSON.stringify(body)
     });
 
-    closeModal();
+    loadTasks();
+}
+
+async function submitDeleteTask() {
+    const id = document.getElementById('deleteId').value;
+
+    if (id === "" || isNaN(id)) {
+        alert("Please enter a valid ID.");
+        return;
+    }
+
+    const response = await fetch(`/tasks/${id}`, {
+        method: 'DELETE'
+    });
+
+    if (response.status === 204) {
+        alert("Task has been deleted");
+    } else {
+        alert("Error deleting task");
+    }
+
+    closeDeleteModal();
     loadTasks();
 }
 
@@ -39,22 +71,6 @@ async function sortFalseFirst(){
     const res = await fetch('/tasks/sort-false-first');
     const tasks = await res.json();
     showOutput(tasks);
-}
-
-async function deleteTask() {
-    const id = prompt("Enter ID:");
-    if (id === null || id.trim() === "") {
-        return;
-    }
-
-    const response = await fetch(`/tasks/${id}`, {
-        method: 'DELETE'
-    });
-
-    if (response.status === 204) {
-        alert("Task has been deleted");
-    }
-    loadTasks();
 }
 
 function showOutput(tasks) {

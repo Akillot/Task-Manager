@@ -11,28 +11,21 @@
 <h1><span class="highlight">Task</span> Manager</h1>
 
 <nav class="navbar">
-    <a href="#" onclick="openModal()">Create Task</a>
+    <a href="#" onclick="createTask()">Create Task</a>
     <a href="#" onclick="loadTasks()">Load Tasks</a>
     <a href="#" onclick="sortTrueFirst()">Sort by finished</a>
     <a href="#" onclick="sortFalseFirst()">Sort by unfinished</a>
-    <a href="#" onclick="deleteTask()">Delete</a>
+    <a href="#" onclick="openDeleteModal()">Delete</a>
 </nav>
 
-<div class="modal" id="modal">
+<div class="modal" id="deleteModal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Create Task</h2>
-        <label>Title
-            <input type="text" id="title" />
+        <span class="close" onclick="closeDeleteModal()">&times;</span>
+        <h2>Delete Task</h2>
+        <label>Task ID
+            <input type="number" id="deleteId" />
         </label>
-        <label>Description
-            <input type="text" id="description" />
-        </label>
-        <label>
-            Completed
-            <input type="checkbox" id="isCompleted" />
-        </label>
-        <button onclick="submitTask()">Save</button>
+        <button onclick="submitDeleteTask()">Delete</button>
     </div>
 </div>
 
