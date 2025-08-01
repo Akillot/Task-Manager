@@ -82,28 +82,3 @@ function showOutput(tasks) {
         output.style.display = 'none';
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const titles = [
-        "Task Manager",
-        "Менеджер Задач",
-        "Διαχειριστής εργασιών",
-        "Administrador de Tareas",
-        "Gestionnaire de Tâches"
-    ];
-
-    let currentTitle = 0;
-
-    function changeTitle() {
-        const element = document.getElementById("logo");
-        element.style.opacity = "0";
-
-        setTimeout(() => {
-            currentTitle = (currentTitle + 1) % titles.length;
-            element.textContent = titles[currentTitle];
-            element.style.opacity = "1";
-        }, 500);
-    }
-
-    setInterval(changeTitle, 10000);
-});
